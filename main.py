@@ -142,13 +142,15 @@ for match in matches:
             "departement": departement,
             "departement_code": code_departement(departement),
             "nombre_engages": nombre_engages,
+            "nombre_sortis": 0,
         }
     )
 
 res = sorted(res, key=lambda k: k["departement_code"])
 
 today = datetime.datetime.today().strftime("%Y-%m-%d")
-with open("data/" + today + ".csv", "w") as f:
-    writer = csv.DictWriter(f, res[0].keys())
-    writer.writeheader()
-    writer.writerows(res)
+for filename in ["latest", today]:
+    with open("data/" + filename + ".csv", "w") as f:
+        writer = csv.DictWriter(f, res[0].keys())
+        writer.writeheader()
+        writer.writerows(res)
