@@ -1,14 +1,14 @@
 version: 2
 jobs:
   fetch_csv:
+    working_directory: ~/repo
     docker:
       - image: circleci/python:3.6
     steps:
-      - checkout:
-          path: ~/repo
+      - checkout
       - add_ssh_keys:
           fingerprints:
-            - "7f:97:d9:ea:aa:94:0d:01:56:a4:62:26:b3:3d:8e:17"
+            - "45:83:c5:d8:bf:33:de:7d:8b:74:ca:10:c8:70:94:37"
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "requirements.txt" }}
